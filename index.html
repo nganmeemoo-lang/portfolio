@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Thành Lộc — Personal Profile</title>
+<meta name="description" content="Personal profile and portfolio of Mai Phat — software engineer and student.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Spine: connective circuit line running through the whole page -->
+<div class="spine" aria-hidden="true"><div class="spine__fill" id="spineFill"></div></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav__mark" data-node>MP</a>
+  <ul class="nav__links">
+    <li><a href="#about" data-node>About</a></li>
+    <li><a href="#education" data-node>Education</a></li>
+    <li><a href="#skills" data-node>Skills</a></li>
+    <li><a href="#status" data-node>Status</a></li>
+    <li><a href="#contact" data-node>Contact</a></li>
+  </ul>
+</nav>
+
+```html
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
+  <div class="hero__vignette" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow">Personal profile record</p>
+
+    <h1 class="hero__title">
+      <span class="hero__hello">Hey, I'm</span>
+      <span class="hero__name">Võ&nbsp;Thành&nbsp;Lộc</span>
+    </h1>
+
+    <p class="hero__tagline">
+      A student studying at Tra Vinh University.<br>
+      Class DA26DTB — Control and Automation Engineering.
+    </p>
+
+    <a href="#about" class="hero__scroll" data-node aria-label="Scroll to profile">
+      <span class="hero__scroll-line"></span>
+      <span class="hero__scroll-text">Scroll to view profile</span>
+    </a>
+  </div>
+</header>
+
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about" data-section="01">
+  <div class="section__head reveal">
+    <span class="section__node" data-node></span>
+    <h2 class="section__title">Personal information</h2>
+    <p class="section__sub">
+      The basics — who I am and where I study.
+    </p>
+  </div>
+
+  <div class="about">
+    <div class="about__portrait reveal">
+      <div class="about__frame">
+        <div class="about__frame-glow"></div>
+
+        <!-- Ảnh đại diện -->
+        <img
+          src="image.png"
+          alt="Võ Thành Lộc Avatar"
+          class="about__avatar-img"
+        >
+      </div>
+    </div>
+
+    <dl class="about__fields reveal">
+
+      <div class="field">
+        <dt>Full name</dt>
+        <dd>Võ Thành Lộc</dd>
+      </div>
+
+      <div class="field">
+        <dt>Class</dt>
+        <dd>DA26DTB</dd>
+      </div>
+
+      <div class="field">
+        <dt>University</dt>
+        <dd>Tra Vinh University</dd>
+      </div>
+
+      <div class="field">
+        <dt>Major</dt>
+        <dd>Control and Automation Engineering</dd>
+      </div>
+
+      <div class="field">
+        <dt>Current location</dt>
+        <dd>Tra Vinh, Vietnam</dd>
+      </div>
+
+      <div class="field field--wide">
+        <dt>About</dt>
+        <dd>
+          I am currently a student at Tra Vinh University,
+          class DA26DTB, studying Control and Automation Engineering.
+          I am interested in technology, programming, artificial intelligence,
+          automation and continuously developing my skills.
+        </dd>
+      </div>
+
+    </dl>
+  </div>
+</section>
+
+
+<!-- ============ EDUCATION TIMELINE ============ -->
+<section class="section" id="education" data-section="02">
+  <div class="section__head reveal">
+    <span class="section__node" data-node></span>
+    <h2 class="section__title">Education timeline</h2>
+    <p class="section__sub">
+      My education journey from kindergarten to university.
+    </p>
+  </div>
+
+  <ol class="timeline">
+
+    <li class="timeline__item reveal">
+      <div class="timeline__marker"></div>
+
+      <div class="timeline__body" data-node tabindex="0">
+        <span class="timeline__period">2013 — 2014</span>
+        <h3 class="timeline__title">
+          Phước Vân Kindergarten
+        </h3>
+      </div>
+    </li>
+
+
+    <li class="timeline__item reveal">
+      <div class="timeline__marker"></div>
+
+      <div class="timeline__body" data-node tabindex="0">
+        <span class="timeline__period">2014 — 2019</span>
+        <h3 class="timeline__title">
+          Phước Vân Primary School
+        </h3>
+      </div>
+    </li>
+
+
+    <li class="timeline__item reveal">
+      <div class="timeline__marker"></div>
+
+      <div class="timeline__body" data-node tabindex="0">
+        <span class="timeline__period">2019 — 2023</span>
+        <h3 class="timeline__title">
+          Phước Vân Secondary School
+        </h3>
+      </div>
+    </li>
+
+
+    <li class="timeline__item reveal">
+      <div class="timeline__marker"></div>
+
+      <div class="timeline__body" data-node tabindex="0">
+        <span class="timeline__period">2023 — 2026</span>
+        <h3 class="timeline__title">
+          Rạch Kiến High School
+        </h3>
+      </div>
+    </li>
+
+
+    <li class="timeline__item timeline__item--current reveal">
+      <div class="timeline__marker"></div>
+
+      <div class="timeline__body" data-node tabindex="0">
+        <span class="timeline__period">2026 — Present</span>
+
+        <h3 class="timeline__title">
+          Tra Vinh University
+        </h3>
+
+        <span class="timeline__badge">Current</span>
+      </div>
+    </li>
+
+  </ol>
+</section>
+
+
+<!-- ============ SKILLS ============ -->
+<section class="section" id="skills" data-section="03">
+  <div class="section__head reveal">
+    <span class="section__node" data-node></span>
+
+    <h2 class="section__title">Skills</h2>
+
+    <p class="section__sub">
+      Technologies, tools and skills I am currently developing.
+    </p>
+  </div>
+
+  <div class="skills">
+
+    <div class="skills__group reveal">
+      <h3 class="skills__group-title">Engineering</h3>
+
+      <ul class="skillbars">
+
+        <li class="skillbar">
+          <span class="skillbar__label">C++ / Python</span>
+          <span class="skillbar__track">
+            <span class="skillbar__fill" style="--level:72%"></span>
+          </span>
+        </li>
+
+        <li class="skillbar">
+          <span class="skillbar__label">HTML &amp; CSS</span>
+          <span class="skillbar__track">
+            <span class="skillbar__fill" style="--level:60%"></span>
+          </span>
+        </li>
+
+        <li class="skillbar">
+          <span class="skillbar__label">Java</span>
+          <span class="skillbar__track">
+            <span class="skillbar__fill" style="--level:48%"></span>
+          </span>
+        </li>
+
+        <li class="skillbar">
+          <span class="skillbar__label">Automation</span>
+          <span class="skillbar__track">
+            <span class="skillbar__fill" style="--level:55%"></span>
+          </span>
+        </li>
+
+      </ul>
+    </div>
+
+
+    <div class="skills__group reveal">
+      <h3 class="skills__group-title">Craft &amp; tools</h3>
+
+      <ul class="skillbars">
+
+        <li class="skillbar">
+          <span class="skillbar__label">AI skills</span>
+          <span class="skillbar__track">
+            <span class="skillbar__fill" style="--level:80%"></span>
+          </span>
+        </li>
+
+        <li class="skillbar">
+          <span class="skillbar__label">
+            Word / Excel / PowerPoint
+          </span>
+
+          <span class="skillbar__track">
+            <span class="skillbar__fill" style="--level:75%"></span>
+          </span>
+        </li>
+
+        <li class="skillbar">
+          <span class="skillbar__label">
+            Canva &amp; Editing
+          </span>
+
+          <span class="skillbar__track">
+            <span class="skillbar__fill" style="--level:78%"></span>
+          </span>
+        </li>
+
+        <li class="skillbar">
+          <span class="skillbar__label">
+            Learning ability
+          </span>
+
+          <span class="skillbar__track">
+            <span class="skillbar__fill" style="--level:70%"></span>
+          </span>
+        </li>
+
+      </ul>
+    </div>
+
+
+    <div class="skills__group reveal">
+      <h3 class="skills__group-title">
+        Working languages
+      </h3>
+
+      <ul class="skilltags">
+        <li>Vietnamese — native</li>
+        <li>English — learning</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============ STATUS ============ -->
+<section class="section" id="status" data-section="04">
+
+  <div class="section__head reveal">
+    <span class="section__node" data-node></span>
+
+    <h2 class="section__title">Status</h2>
+
+    <p class="section__sub">
+      Current academic and personal status.
+    </p>
+  </div>
+
+
+  <div class="statusgrid">
+
+    <div class="statuscard reveal">
+
+      <div class="statuscard__icon" aria-hidden="true">
+        <svg viewBox="0 0 48 24" class="pulse-line">
+          <polyline points="0,12 10,12 14,3 19,21 24,12 48,12" />
+        </svg>
+      </div>
+
+      <h3 class="statuscard__title">
+        Student status
+      </h3>
+
+      <ul class="statuslist">
+
+        <li class="statuslist__row">
+          <span class="statuslist__label">University</span>
+          <span class="statuslist__value">
+            Tra Vinh University
+          </span>
+        </li>
+
+        <li class="statuslist__row">
+          <span class="statuslist__label">Class</span>
+          <span class="statuslist__value">
+            DA26DTB
+          </span>
+        </li>
+
+        <li class="statuslist__row">
+          <span class="statuslist__label">Major</span>
+          <span class="statuslist__value">
+            Automation Engineering
+          </span>
+        </li>
+
+        <li class="statuslist__row">
+          <span class="statuslist__label">Academic status</span>
+          <span class="statuslist__value">
+            Current student
+          </span>
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="statuscard reveal">
+
+      <div class="statuscard__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="ring-icon">
+          <circle cx="12" cy="12" r="8" />
+        </svg>
+      </div>
+
+      <h3 class="statuscard__title">
+        Current status
+      </h3>
+
+      <p class="statuscard__value">
+        Studying
+      </p>
+
+      <p class="statuscard__note">
+        Currently studying at Tra Vinh University
+        as a member of class DA26DTB.
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============ CONTACT ============ -->
+<section class="section section--contact" id="contact" data-section="05">
+
+  <div class="section__head reveal">
+    <span class="section__node" data-node></span>
+
+    <h2 class="section__title">
+      Contact information
+    </h2>
+
+    <p class="section__sub">
+      The fastest way to reach me is email.
+    </p>
+  </div>
+
+
+  <div class="contact">
+
+    <div class="contact__details reveal">
+
+      <a
+        class="contact__row"
+        href="mailto:duckfast1807@gmail.com"
+        data-node
+      >
+        <span class="contact__label">Email</span>
+
+        <span class="contact__value">
+          duckfast1807@gmail.com
+        </span>
+      </a>
+
+
+      <a
+        class="contact__row"
+        href="tel:+84855788713"
+        data-node
+      >
+        <span class="contact__label">Phone</span>
+
+        <span class="contact__value">
+          0855788713
+        </span>
+      </a>
+
+
+      <div class="contact__row">
+        <span class="contact__label">
+          Location
+        </span>
+
+        <span class="contact__value">
+          Trà Vinh, Vietnam
+        </span>
+      </div>
+
+
+      <a
+        class="contact__row"
+        href="https://github.com/MikeDuckFast"
+        target="_blank"
+        rel="noopener"
+        data-node
+      >
+        <span class="contact__label">
+          GitHub
+        </span>
+
+        <span class="contact__value">
+          github.com/MikeDuckFast
+        </span>
+      </a>
+
+
+      <a
+        class="contact__row"
+        href="https://www.facebook.com/ducphatisreal/"
+        target="_blank"
+        rel="noopener"
+        data-node
+      >
+        <span class="contact__label">
+          Facebook
+        </span>
+
+        <span class="contact__value">
+          facebook.com/ducphatisreal
+        </span>
+      </a>
+
+    </div>
+
+
+    <form class="contact__form reveal" id="contactForm">
+
+      <div class="formfield">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="formfield">
+        <label for="email">Your email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="formfield">
+        <label for="message">Message</label>
+
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="btn"
+        data-node
+      >
+        Send message
+      </button>
+
+      <p
+        class="formfield__status"
+        id="formStatus"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+    </form>
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <p>
+    © <span id="year"></span>
+    Võ Thành Lộc.
+    Built with plain HTML, CSS, JavaScript and Claude.
+  </p>
+</footer>
+
+</main>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="assets/background-music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="soundtoggle" id="soundToggle" aria-pressed="true" aria-label="Tắt/bật nhạc nền">
+  <span class="soundtoggle__icon" id="soundIcon">♪</span>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
