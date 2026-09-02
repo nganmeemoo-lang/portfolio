@@ -241,21 +241,54 @@
     draw();
   }
 
-  /* =====================================================
-     7. CONTACT FORM — front-end only stub
-  ===================================================== */
-  const form = document.getElementById("contactForm");
-  const status = document.getElementById("formStatus");
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (status) {
-        status.textContent = "Thanks — message captured locally. Wire this form up to your own endpoint or a service like Formspree to receive it by email.";
-      }
-      form.reset();
-    });
-  }
+ /* =====================================================
+   7. CONTACT FORM → FIRESTORE
+===================================================== */
+const form = document.getElementById("contactForm");
+const status = document.getElementById("formStatus");
 
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !message) {
+      if (status) {
+        status.textContent = "Please fill in all fields.";
+      }
+      return;
+    }
+
+    if (status) {
+      status.textContent = "Sending...";
+    }
+
+    try {
+      await addDoc(collection(db, "messages"), {
+        name: name,
+        email: email,
+        message: message,
+        createdAt: serverTimestamp()
+      });
+
+      if (status) {
+        status.textContent = "✅ Message sent successfully!";
+      }
+
+      form.reset();
+
+    } catch (error) {
+      console.error("Firestore error:", error);
+
+      if (status) {
+        status.textContent = "❌ Cannot send message. Please try again.";
+      }
+    }
+  });
+}
   /* =====================================================
      8. MISC
   ===================================================== */
