@@ -1,3 +1,24 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCOpNRjz7QAmFk5ET2U0Vs60YZ9Gz73rhI",
+  authDomain: "tlocportfolio.firebaseapp.com",
+  projectId: "tlocportfolio",
+  storageBucket: "tlocportfolio.firebasestorage.app",
+  messagingSenderId: "1070516508225",
+  appId: "1:1070516508225:web:3f6cccba09b0d5e1ee98c0"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 (() => {
   "use strict";
 
