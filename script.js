@@ -296,7 +296,7 @@ if (form) {
       });
 
       if (status) {
-        status.textContent = "✅ Message sent successfully!";
+        status.textContent = "✅ Tin nhắn đã gửi thành công !";
       }
 
       form.reset();
@@ -305,7 +305,7 @@ if (form) {
       console.error("Firestore error:", error);
 
       if (status) {
-        status.textContent = "❌ Cannot send message. Please try again.";
+        status.textContent = "❌ Tin nhắn không thể gửi do quá tải hệ thống.";
       }
     }
   });
