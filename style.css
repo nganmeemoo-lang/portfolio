@@ -1289,3 +1289,58 @@ a {
   }
 
 }
+/* ==============================
+   MUSIC HINT
+============================== */
+
+.music-hint {
+  position: fixed;
+  right: 85px;
+  bottom: 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 12px;
+  border-radius: 20px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  z-index: 9999;
+  pointer-events: none;
+
+  animation: musicHintFloat 1.2s ease-in-out infinite;
+}
+
+.music-arrow {
+  font-size: 22px;
+  animation: musicArrowBounce 0.8s ease-in-out infinite;
+}
+
+@keyframes musicHintFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes musicArrowBounce {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(7px);
+  }
+}
+
+.music-hint.hidden {
+  opacity: 0;
+  transform: translateX(15px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
