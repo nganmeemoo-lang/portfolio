@@ -28,34 +28,37 @@ const db = getFirestore(app);
      1. BACKGROUND MUSIC — plays the visitor's own MP3 file
         (assets/background-music.mp3), auto-plays and loops.
   ===================================================== */
-  const bgMusic = document.getElementById("bgMusic");
+ const bgMusic = document.getElementById("bgMusic");
 const soundToggle = document.getElementById("soundToggle");
 const soundIcon = document.getElementById("soundIcon");
 
 if (bgMusic && soundToggle) {
   bgMusic.volume = 0.4;
 
-  // Bắt đầu nhạc khi người dùng tương tác lần đầu
-  const startMusic = () => {
-    if (bgMusic.paused) {
-      bgMusic.play().catch(() => {});
-    }
+  // Tự động phát khi vừa mở trang
+  window.addEventListener("load", () => {
+    bgMusic.play()
+      .then(() => {
+        soundIcon.textContent = "♪";
+        soundToggle.setAttribute("aria-pressed", "true");
+        console.log("🎵 Nhạc đang phát");
+      })
+      .catch(() => {
+        console.log("⚠️ Trình duyệt chặn autoplay có âm thanh.");
+      });
+  });
 
-    document.removeEventListener("click", startMusic);
-    document.removeEventListener("keydown", startMusic);
-  };
-
-  document.addEventListener("click", startMusic);
-  document.addEventListener("keydown", startMusic);
-
-  // Nút bật / tắt nhạc
+  // Nút bật / tắt
   soundToggle.addEventListener("click", (e) => {
     e.stopPropagation();
 
     if (bgMusic.paused) {
-      bgMusic.play().catch(() => {});
-      soundIcon.textContent = "♪";
-      soundToggle.setAttribute("aria-pressed", "true");
+      bgMusic.play()
+        .then(() => {
+          soundIcon.textContent = "♪";
+          soundToggle.setAttribute("aria-pressed", "true");
+        })
+        .catch(() => {});
     } else {
       bgMusic.pause();
       soundIcon.textContent = "×";
