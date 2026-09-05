@@ -29,71 +29,53 @@ const db = getFirestore(app);
         (assets/background-music.mp3), auto-plays and loops.
   ===================================================== */
   const bgMusic = document.getElementById("bgMusic");
-  const soundToggle = document.getElementById("soundToggle");
-  const soundIcon = document.getElementById("soundIcon");
-  let musicStarted = false;
-  let musicMuted = false;
+const soundToggle = document.getElementById("soundToggle");
+const soundIcon = document.getElementById("soundIcon");
 
-  function trySetVolume() {
-    if (!bgMusic) return;
-    bgMusic.volume = 0; // start silent, fade in once playback begins
-  }
-  trySetVolume();
+if (bgMusic) {
+  bgMusic.volume = 0.4;
 
-  function fadeIn() {
-    if (!bgMusic || musicMuted) return;
-    const target = 0.5;
-    const step = () => {
-      if (bgMusic.volume < target - 0.02) {
-        bgMusic.volume = Math.min(target, bgMusic.volume + 0.03);
-        requestAnimationFrame(step);
-      } else {
-        bgMusic.volume = target;
-      }
-    };
-    step();
-  }
-
-  function tryStartMusic() {
-    if (!bgMusic || musicStarted) return;
-    const playPromise = bgMusic.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          musicStarted = true;
-          fadeIn();
-        })
-        .catch(() => {
-          // Autoplay was blocked; stay silent until the next user gesture.
-        });
-    }
-  }
-
-  // Try immediately on load...
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    tryStartMusic();
-  } else {
-    window.addEventListener("DOMContentLoaded", tryStartMusic, { once: true });
-  }
-  // ...and again on the visitor's first interaction, to satisfy browsers
-  // that block audio autoplay until a user gesture occurs.
-  ["pointerdown", "keydown", "touchstart", "scroll"].forEach((evt) => {
-    window.addEventListener(evt, tryStartMusic, { once: true, passive: true });
+  // Thử tự động phát khi trang tải
+  window.addEventListener("load", () => {
+    bgMusic.play().then(() => {
+      console.log("🎵 Nhạc nền đang phát");
+    }).catch((error) => {
+      console.log("Autoplay bị trình duyệt chặn:", error);
+    });
   });
 
-  if (soundToggle && bgMusic) {
-    soundToggle.addEventListener("click", () => {
-      musicMuted = !musicMuted;
-      if (musicMuted) {
-        bgMusic.volume = 0;
-      } else {
-        if (bgMusic.paused) tryStartMusic();
-        fadeIn();
-      }
-      soundToggle.setAttribute("aria-pressed", String(!musicMuted));
-      soundIcon.textContent = musicMuted ? "×" : "♪";
-    });
-  }
+  // Nếu autoplay bị chặn → phát ngay khi người dùng tương tác
+  const startMusic = () => {
+    if (bgMusic.paused) {
+      bgMusic.play().then(() => {
+        console.log("🎵 Nhạc nền đã bắt đầu");
+      }).catch(() => {});
+    }
+
+    document.removeEventListener("click", startMusic);
+    document.removeEventListener("keydown", startMusic);
+  };
+
+  document.addEventListener("click", startMusic);
+  document.addEventListener("keydown", startMusic);
+}
+
+// Nút bật/tắt
+if (soundToggle && bgMusic) {
+  soundToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    if (bgMusic.paused) {
+      bgMusic.play();
+      soundIcon.textContent = "♪";
+      soundToggle.setAttribute("aria-pressed", "true");
+    } else {
+      bgMusic.pause();
+      soundIcon.textContent = "×";
+      soundToggle.setAttribute("aria-pressed", "false");
+    }
+  });
+}
 
   /* =====================================================
      2. SMOOTH ANCHOR SCROLL
