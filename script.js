@@ -33,43 +33,67 @@ const soundToggle = document.getElementById("soundToggle");
 const soundIcon = document.getElementById("soundIcon");
 
 if (bgMusic && soundToggle) {
+
+  // Âm lượng 40%
   bgMusic.volume = 0.4;
 
-  // Thử autoplay ngay khi script chạy
-  const autoPlayMusic = async () => {
-    try {
-      await bgMusic.play();
+  // Trạng thái ban đầu
+  let musicEnabled = true;
 
-      soundIcon.textContent = "♪";
-      soundToggle.setAttribute("aria-pressed", "true");
+  // ==============================
+  // TỰ ĐỘNG PHÁT KHI VÀO TRANG
+  // ==============================
+  function startMusic() {
+    if (!musicEnabled) return;
 
-      console.log("🎵 Autoplay thành công");
-    } catch (error) {
-      console.log("⚠️ Autoplay bị trình duyệt chặn:", error.name);
-    }
-  };
+    bgMusic.play()
+      .then(() => {
+        soundIcon.textContent = "♪";
+        soundToggle.setAttribute("aria-pressed", "true");
 
-  autoPlayMusic();
+        console.log("🎵 Nhạc nền đang phát");
+      })
+      .catch((error) => {
+        console.log("⚠️ Autoplay không được phép:", error.name);
+      });
+  }
 
-  // Nút bật / tắt
+  // Thử phát ngay
+  startMusic();
+
+  // ==============================
+  // NÚT BẬT / TẮT
+  // ==============================
   soundToggle.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (bgMusic.paused) {
-      bgMusic.play()
-        .then(() => {
-          soundIcon.textContent = "♪";
-          soundToggle.setAttribute("aria-pressed", "true");
-        })
-        .catch((error) => {
-          console.error("Không thể phát:", error);
-        });
-    } else {
+    // Đang phát → DỪNG
+    if (!bgMusic.paused) {
+      musicEnabled = false;
+
       bgMusic.pause();
 
       soundIcon.textContent = "×";
       soundToggle.setAttribute("aria-pressed", "false");
+
+      console.log("🔇 Đã tắt nhạc");
+    }
+
+    // Đang dừng → PHÁT
+    else {
+      musicEnabled = true;
+
+      bgMusic.play()
+        .then(() => {
+          soundIcon.textContent = "♪";
+          soundToggle.setAttribute("aria-pressed", "true");
+
+          console.log("🎵 Đã bật nhạc");
+        })
+        .catch((error) => {
+          console.error("❌ Không thể phát nhạc:", error);
+        });
     }
   });
 }
