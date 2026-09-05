@@ -24,8 +24,8 @@ const db = getFirestore(app);
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* =====================================================
-   1. BACKGROUND MUSIC
+ /* =====================================================
+   BACKGROUND MUSIC
 ===================================================== */
 
 const bgMusic = document.getElementById("bgMusic");
@@ -34,68 +34,33 @@ const soundIcon = document.getElementById("soundIcon");
 
 if (bgMusic && soundToggle) {
 
-  // Âm lượng 40%
   bgMusic.volume = 0.4;
 
-  // Trạng thái ban đầu
-  let musicEnabled = true;
+  soundToggle.addEventListener("click", () => {
 
-  // ==============================
-  // TỰ ĐỘNG PHÁT KHI VÀO TRANG
-  // ==============================
-  function startMusic() {
-    if (!musicEnabled) return;
-
-    bgMusic.play()
-      .then(() => {
-        soundIcon.textContent = "♪";
-        soundToggle.setAttribute("aria-pressed", "true");
-
-        console.log("🎵 Nhạc nền đang phát");
-      })
-      .catch((error) => {
-        console.log("⚠️ Autoplay không được phép:", error.name);
-      });
-  }
-
-  // Thử phát ngay
-  startMusic();
-
-  // ==============================
-  // NÚT BẬT / TẮT
-  // ==============================
-  soundToggle.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Đang phát → DỪNG
-    if (!bgMusic.paused) {
-      musicEnabled = false;
-      bgMusic.pause();
-
-      soundIcon.textContent = "×";
-      soundToggle.setAttribute("aria-pressed", "false");
-
-      console.log("🔇 Đã tắt nhạc");
-    }
-
-    // Đang dừng → PHÁT
-    else {
-      musicEnabled = true;
+    if (bgMusic.paused) {
 
       bgMusic.play()
         .then(() => {
           soundIcon.textContent = "♪";
           soundToggle.setAttribute("aria-pressed", "true");
-
-          console.log("🎵 Đã bật nhạc");
         })
         .catch((error) => {
-          console.error("❌ Không thể phát nhạc:", error);
+          console.error("Không thể phát nhạc:", error);
         });
+
+    } else {
+
+      bgMusic.pause();
+
+      soundIcon.textContent = "×";
+      soundToggle.setAttribute("aria-pressed", "false");
     }
+
   });
+
 }
+
   /* =====================================================
      2. SMOOTH ANCHOR SCROLL
   ===================================================== */
