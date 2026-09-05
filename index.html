@@ -19,36 +19,37 @@
 <nav class="nav" id="nav">
   <a href="#hero" class="nav__mark" data-node>TL</a>
   <ul class="nav__links">
-    <li><a href="#about" data-node>About</a></li>
-    <li><a href="#education" data-node>Education</a></li>
-    <li><a href="#skills" data-node>Skills</a></li>
-    <li><a href="#status" data-node>Status</a></li>
-    <li><a href="#contact" data-node>Contact</a></li>
+    <li><a href="#about" data-node>Giới thiệu</a></li>
+    <li><a href="#education" data-node>Hành trình học tập</a></li>
+    <li><a href="#skills" data-node>Kỹ năng</a></li>
+    <li><a href="#status" data-node>Hiện tại</a></li>
+    <li><a href="#contact" data-node>Liên hệ</a></li>
   </ul>
 </nav>
 
-```html
+
 <!-- ============ HERO ============ -->
 <header class="hero" id="hero">
   <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
   <div class="hero__vignette" aria-hidden="true"></div>
 
   <div class="hero__content">
-    <p class="hero__eyebrow">Personal profile record</p>
+    <p class="hero__eyebrow">Giới thiệu cá nhân</p>
 
     <h1 class="hero__title">
-      <span class="hero__hello">Hey, I'm</span>
+      <span class="hero__hello">Xin chào bạn , Tôi tên là </span>
       <span class="hero__name">Võ&nbsp;Thành&nbsp;Lộc</span>
     </h1>
 
     <p class="hero__tagline">
-      A student studying at Tra Vinh University.<br>
-      Class DA26DTB — Control and Automation Engineering.
+      Tôi là sinh viên trường Đại học Trà Vinh K26.<br>
+      Tôi học lớp DA26DTB — CET.
+      Chuyên ngành của tôi là CÔNG NGHỆ KỸ THUẬT ĐIỀU KHIỂN VÀ TỰ ĐỘNG HÓA
     </p>
 
     <a href="#about" class="hero__scroll" data-node aria-label="Scroll to profile">
       <span class="hero__scroll-line"></span>
-      <span class="hero__scroll-text">Scroll to view profile</span>
+      <span class="hero__scroll-text">Cuộn để xem thêm </span>
     </a>
   </div>
 </header>
@@ -58,9 +59,9 @@
 <section class="section" id="about" data-section="01">
   <div class="section__head reveal">
     <span class="section__node" data-node></span>
-    <h2 class="section__title">Personal information</h2>
+    <h2 class="section__title">Thông tin cá nhân</h2>
     <p class="section__sub">
-      The basics — who I am and where I study.
+      Đây là những thông tin cơ bản về tôi và nơi tôi đang học.
     </p>
   </div>
 
@@ -81,37 +82,38 @@
     <dl class="about__fields reveal">
 
       <div class="field">
-        <dt>Full name</dt>
+        <dt>Họ và tên</dt>
         <dd>Võ Thành Lộc</dd>
       </div>
 
       <div class="field">
-        <dt>Class</dt>
+        <dt>Lớp</dt>
         <dd>DA26DTB</dd>
       </div>
 
       <div class="field">
-        <dt>University</dt>
-        <dd>Tra Vinh University</dd>
+        <dt>Đại học</dt>
+        <dd>Đại học Trà Vinh</dd>
       </div>
 
       <div class="field">
-        <dt>Major</dt>
-        <dd>Control and Automation Engineering</dd>
+        <dt>Chuyên ngành</dt>
+        <dd>Công nghệ kỹ thuật điều khiển và tự động hóa</dd>
       </div>
 
       <div class="field">
-        <dt>Current location</dt>
-        <dd>Tra Vinh, Vietnam</dd>
+        <dt>Nơi sinh sống hiện tại</dt>
+        <dd>Phường Nguyệt Hóa , Tỉnh Vĩnh Long , Việt Nam </dd>
       </div>
 
       <div class="field field--wide">
         <dt>About</dt>
         <dd>
-          I am currently a student at Tra Vinh University,
-          class DA26DTB, studying Control and Automation Engineering.
-          I am interested in technology, programming, artificial intelligence,
-          automation and continuously developing my skills.
+         Hiện tôi là sinh viên lớp DA26DTB, 
+          chuyên ngành Kỹ thuật Điều khiển và Tự động hóa tại Trường Đại học Trà Vinh. 
+          Tôi có niềm đam mê với công nghệ, lập trình, trí tuệ nhân tạo (AI) và tự động hóa.
+Với tinh thần ham học hỏi và không ngừng khám phá, tôi luôn chủ động trau dồi kiến thức chuyên môn, phát triển kỹ năng lập trình và hoàn thiện bản thân mỗi ngày. Tôi mong muốn kết hợp kiến thức kỹ thuật với công nghệ hiện đại để tạo ra những giải pháp sáng tạo, thực tiễn và có giá trị trong lĩnh vực tự động hóa.
+
         </dd>
       </div>
 
@@ -124,10 +126,9 @@
 <section class="section" id="education" data-section="02">
   <div class="section__head reveal">
     <span class="section__node" data-node></span>
-    <h2 class="section__title">Education timeline</h2>
+    <h2 class="section__title">Hành trình học tập</h2>
     <p class="section__sub">
-      My education journey from kindergarten to university.
-    </p>
+      Hành trình học tập: Từ mẫu giáo đến đại học
   </div>
 
   <ol class="timeline">
@@ -138,7 +139,7 @@
       <div class="timeline__body" data-node tabindex="0">
         <span class="timeline__period">2013 — 2014</span>
         <h3 class="timeline__title">
-          Phước Vân Kindergarten
+          Trường mẫu giáo Phước Vân
         </h3>
       </div>
     </li>
@@ -150,7 +151,7 @@
       <div class="timeline__body" data-node tabindex="0">
         <span class="timeline__period">2014 — 2019</span>
         <h3 class="timeline__title">
-          Phước Vân Primary School
+          Trường Tiểu học Phước Vân
         </h3>
       </div>
     </li>
@@ -162,7 +163,7 @@
       <div class="timeline__body" data-node tabindex="0">
         <span class="timeline__period">2019 — 2023</span>
         <h3 class="timeline__title">
-          Phước Vân Secondary School
+          Trường Trung học cơ sở Phước Vân
         </h3>
       </div>
     </li>
@@ -174,7 +175,7 @@
       <div class="timeline__body" data-node tabindex="0">
         <span class="timeline__period">2023 — 2026</span>
         <h3 class="timeline__title">
-          Rạch Kiến High School
+          Trường Trung học Phổ thông Rạch Kiến
         </h3>
       </div>
     </li>
@@ -187,7 +188,7 @@
         <span class="timeline__period">2026 — Present</span>
 
         <h3 class="timeline__title">
-          Tra Vinh University
+          Trường Đại học Trà Vinh 
         </h3>
 
         <span class="timeline__badge">Current</span>
@@ -203,17 +204,17 @@
   <div class="section__head reveal">
     <span class="section__node" data-node></span>
 
-    <h2 class="section__title">Skills</h2>
+    <h2 class="section__title">Kỹ năng</h2>
 
     <p class="section__sub">
-      Technologies, tools and skills I am currently developing.
+      Kiến thức và kỹ năng hiện có
     </p>
   </div>
 
   <div class="skills">
 
     <div class="skills__group reveal">
-      <h3 class="skills__group-title">Engineering</h3>
+      <h3 class="skills__group-title">Kỹ thuật</h3>
 
       <ul class="skillbars">
 
@@ -241,7 +242,7 @@
         <li class="skillbar">
           <span class="skillbar__label"> PLC/SCADA </span>
           <span class="skillbar__track">
-            <span class="skillbar__fill" style="--level:55%"></span>
+            <span class="skillbar__fill" style="--level:30%"></span>
           </span>
         </li>
          
@@ -250,12 +251,12 @@
 
 
     <div class="skills__group reveal">
-      <h3 class="skills__group-title">Craft &amp; tools</h3>
+      <h3 class="skills__group-title">Kỹ năng &amp; Công cụ</h3>
 
       <ul class="skillbars">
 
         <li class="skillbar">
-          <span class="skillbar__label">AI skills</span>
+          <span class="skillbar__label">AI</span>
           <span class="skillbar__track">
             <span class="skillbar__fill" style="--level:80%"></span>
           </span>
@@ -273,7 +274,7 @@
 
         <li class="skillbar">
           <span class="skillbar__label">
-            Canva &amp; Editing
+            Canva &amp; Chỉnh sửa video
           </span>
 
           <span class="skillbar__track">
@@ -283,7 +284,7 @@
 
         <li class="skillbar">
           <span class="skillbar__label">
-            Learning ability
+            Khả năng học tập  
           </span>
 
           <span class="skillbar__track">
@@ -294,16 +295,27 @@
       </ul>
     </div>
 
+<div class="skills__group reveal">
+  <h3 class="skills__group-title">
+    Ngôn ngữ giao tiếp
+  </h3>
 
-    <div class="skills__group reveal">
-      <h3 class="skills__group-title">
-        Working languages
-      </h3>
+  <ul class="skillbars">
+    <li class="skillbar">
+      <span class="skillbar__label">Tiếng Việt - bản ngữ </span>
+      <span class="skillbar__track">
+        <span class="skillbar__fill" style="--level:70%"></span>
+      </span>
+    </li>
 
-      <ul class="skilltags">
-        <li>Vietnamese — native</li>
-        <li>English — learning</li>
-      </ul>
+    <li class="skillbar">
+      <span class="skillbar__label">Tiếng Anh</span>
+      <span class="skillbar__track">
+        <span class="skillbar__fill" style="--level:40%"></span>
+      </span>
+    </li>
+  </ul>
+</div>
     </div>
 
   </div>
@@ -316,10 +328,10 @@
   <div class="section__head reveal">
     <span class="section__node" data-node></span>
 
-    <h2 class="section__title">Status</h2>
+    <h2 class="section__title">Hiện tại</h2>
 
     <p class="section__sub">
-      Current academic and personal status.
+      Học tập & trạng thái hiện tại
     </p>
   </div>
 
@@ -335,36 +347,36 @@
       </div>
 
       <h3 class="statuscard__title">
-        Student status
+        Hiện tại
       </h3>
 
       <ul class="statuslist">
 
         <li class="statuslist__row">
-          <span class="statuslist__label">University</span>
+          <span class="statuslist__label">Đại học</span>
           <span class="statuslist__value">
-            Tra Vinh University
+            Đại học Trà Vinh
           </span>
         </li>
 
         <li class="statuslist__row">
-          <span class="statuslist__label">Class</span>
+          <span class="statuslist__label">Lớp</span>
           <span class="statuslist__value">
-            DA26DTB
+            CET - DA26DTB
           </span>
         </li>
 
         <li class="statuslist__row">
-          <span class="statuslist__label">Major</span>
+          <span class="statuslist__label">Chuyên ngành học tập </span>
           <span class="statuslist__value">
-            Automation Engineering
+            Công nghệ kỹ thuật điều khiển và tự động hóa
           </span>
         </li>
 
         <li class="statuslist__row">
-          <span class="statuslist__label">Academic status</span>
+          <span class="statuslist__label">Trạng thái học tập</span>
           <span class="statuslist__value">
-            Current student
+            Sinh viên
           </span>
         </li>
 
@@ -382,16 +394,17 @@
       </div>
 
       <h3 class="statuscard__title">
-        Current status
+        Trạng thái hiện tại
       </h3>
 
       <p class="statuscard__value">
-        Studying
+        Đang học
       </p>
 
       <p class="statuscard__note">
-        Currently studying at Tra Vinh University
-        as a member of class DA26DTB.
+        Hiện đang theo học tại Trường Đại học Trà Vinh, là thành viên của lớp DA26DTB
+        chuyên ngành Kỹ thuật Điều khiển và Tự động hóa.
+
       </p>
 
     </div>
@@ -407,11 +420,11 @@
     <span class="section__node" data-node></span>
 
     <h2 class="section__title">
-      Contact information
+      Thông tin Liên hệ
     </h2>
 
     <p class="section__sub">
-      The fastest way to reach me is email.
+      Bạn có thể liên hệ với tôi nhanh nhất qua email.
     </p>
   </div>
 
@@ -438,7 +451,7 @@
         href="tel:+84797528825"
         data-node
       >
-        <span class="contact__label">Phone</span>
+        <span class="contact__label">Số điện thoại</span>
 
         <span class="contact__value">
         0797528825
@@ -448,18 +461,18 @@
 
       <div class="contact__row">
         <span class="contact__label">
-          Location
+          Vị trí hiện tại
         </span>
 
         <span class="contact__value">
-          Trà Vinh, Vietnam
+          p.Nguyệt Hóa , t.Vĩnh Long , Việt Nam
         </span>
       </div>
 
 
       <a
         class="contact__row"
-        href="https://github.com/MikeDuckFast"
+        href="https://github.com/nganmeemoo-lang"
         target="_blank"
         rel="noopener"
         data-node
@@ -493,36 +506,39 @@
     </div>
 
 
-    <form class="contact__form reveal" id="contactForm">
+<p class="contact__form-desc">
+  Để lại thông tin của bạn nếu bạn muốn liên hệ nhé!
+</p>
 
-      <div class="formfield">
-        <label for="name">Your name</label>
-        <input type="text" id="name" name="name" required>
-      </div>
+<form class="contact__form reveal" id="contactForm">
 
-      <div class="formfield">
-        <label for="email">Your email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
+  <div class="formfield">
+    <label for="name">Tên của bạn</label>
+    <input type="text" id="name" name="name" required>
+  </div>
 
-      <div class="formfield">
-        <label for="message">Message</label>
+  <div class="formfield">
+    <label for="email">Email của bạn</label>
+    <input type="email" id="email" name="email" required>
+  </div>
 
-        <textarea
-          id="message"
-          name="message"
-          rows="4"
-          required
-        ></textarea>
-      </div>
+  <div class="formfield">
+    <label for="message">Tin nhắn</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="4"
+      required
+    ></textarea>
+  </div>
 
-      <button
-        type="submit"
-        class="btn"
-        data-node
-      >
-        Send message
-      </button>
+  <button
+    type="submit"
+    class="btn"
+    data-node
+  >
+    Gửi tin nhắn
+  </button>
 
       <p
         class="formfield__status"
@@ -548,7 +564,7 @@
 </main>
 
 <audio id="bgMusic" loop preload="auto">
-  <source src="assets/background-music.mp3" type="audio/mpeg">
+  <source src="assets/tvu.mp3" type="audio/mpeg">
 </audio>
 
 <button class="soundtoggle" id="soundToggle" aria-pressed="true" aria-label="Tắt/bật nhạc nền">
