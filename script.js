@@ -36,18 +36,19 @@ if (bgMusic && soundToggle) {
 
   bgMusic.volume = 0.4;
 
-  soundToggle.addEventListener("click", () => {
+  soundToggle.addEventListener("click", async () => {
 
     if (bgMusic.paused) {
 
-      bgMusic.play()
-        .then(() => {
-          soundIcon.textContent = "♪";
-          soundToggle.setAttribute("aria-pressed", "true");
-        })
-        .catch((error) => {
-          console.error("Không thể phát nhạc:", error);
-        });
+      try {
+        await bgMusic.play();
+
+        soundIcon.textContent = "♪";
+        soundToggle.setAttribute("aria-pressed", "true");
+
+      } catch (error) {
+        console.error("Không thể phát nhạc:", error);
+      }
 
     } else {
 
