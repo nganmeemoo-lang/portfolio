@@ -33,7 +33,7 @@ const soundToggle = document.getElementById("soundToggle");
 const soundIcon = document.getElementById("soundIcon");
 
 if (bgMusic) {
-  bgMusic.volume = 0.4;
+  bgMusic.volume = 0.7;
 
   // Kiểm tra file nhạc
   bgMusic.addEventListener("error", () => {
