@@ -32,73 +32,37 @@ const db = getFirestore(app);
 const soundToggle = document.getElementById("soundToggle");
 const soundIcon = document.getElementById("soundIcon");
 
-if (bgMusic) {
-  bgMusic.volume = 0.7;
+if (bgMusic && soundToggle) {
+  bgMusic.volume = 0.4;
 
-  // Kiểm tra file nhạc
-  bgMusic.addEventListener("error", () => {
-    console.error("❌ Không thể tải assets/tvu.mp3");
-  });
-
-  bgMusic.addEventListener("canplaythrough", () => {
-    console.log("🎵 tvu.mp3 đã sẵn sàng");
-  });
-
-  // Thử autoplay
-  const playMusic = () => {
-    bgMusic.play()
-      .then(() => {
-        console.log("🎵 Nhạc nền đang phát");
-        if (soundIcon) soundIcon.textContent = "♪";
-      })
-      .catch((error) => {
-        console.log("⚠️ Autoplay bị trình duyệt chặn:", error.name);
-      });
-  };
-
-  // Khi trang tải xong
-  window.addEventListener("load", playMusic);
-
-  // Nếu trình duyệt chặn autoplay,
-  // click / chạm / nhấn phím đầu tiên sẽ bật nhạc
-  const startAfterInteraction = () => {
+  // Bắt đầu nhạc khi người dùng tương tác lần đầu
+  const startMusic = () => {
     if (bgMusic.paused) {
-      bgMusic.play()
-        .then(() => {
-          console.log("🎵 Nhạc đã bắt đầu sau tương tác");
-          if (soundIcon) soundIcon.textContent = "♪";
-        })
-        .catch(console.error);
+      bgMusic.play().catch(() => {});
     }
 
-    document.removeEventListener("pointerdown", startAfterInteraction);
-    document.removeEventListener("keydown", startAfterInteraction);
+    document.removeEventListener("click", startMusic);
+    document.removeEventListener("keydown", startMusic);
   };
 
-  document.addEventListener("pointerdown", startAfterInteraction);
-  document.addEventListener("keydown", startAfterInteraction);
+  document.addEventListener("click", startMusic);
+  document.addEventListener("keydown", startMusic);
 
-  // Nút bật / tắt
-  if (soundToggle) {
-    soundToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
+  // Nút bật / tắt nhạc
+  soundToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
 
-      if (bgMusic.paused) {
-        bgMusic.play()
-          .then(() => {
-            soundIcon.textContent = "♪";
-            soundToggle.setAttribute("aria-pressed", "true");
-          })
-          .catch(console.error);
-      } else {
-        bgMusic.pause();
-        soundIcon.textContent = "×";
-        soundToggle.setAttribute("aria-pressed", "false");
-      }
-    });
-  }
+    if (bgMusic.paused) {
+      bgMusic.play().catch(() => {});
+      soundIcon.textContent = "♪";
+      soundToggle.setAttribute("aria-pressed", "true");
+    } else {
+      bgMusic.pause();
+      soundIcon.textContent = "×";
+      soundToggle.setAttribute("aria-pressed", "false");
+    }
+  });
 }
-
   /* =====================================================
      2. SMOOTH ANCHOR SCROLL
   ===================================================== */
