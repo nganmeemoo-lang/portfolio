@@ -298,15 +298,3 @@ if (form) {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 })();
- /* =====================================================
-     9.MUSIC BACKGROUND
-  ===================================================== */
-const bgMusic = document.getElementById("bgMusic");
-
-bgMusic.volume = 0.4;
-
-window.addEventListener("load", () => {
-  bgMusic.play().catch(() => {
-    console.log("Trình duyệt đã chặn autoplay.");
-  });
-});
