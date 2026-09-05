@@ -24,78 +24,43 @@ const db = getFirestore(app);
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
- /* =====================================================
-     1. BACKGROUND MUSIC — plays the visitor's own MP3 file
-        (assets/background-music.mp3), auto-plays and loops.
-  ===================================================== */
-  const bgMusic = document.getElementById("bgMusic");
-  const soundToggle = document.getElementById("soundToggle");
-  const soundIcon = document.getElementById("soundIcon");
-  let musicStarted = false;
-  let musicMuted = false;
+/* =====================================================
+   1. BACKGROUND MUSIC
+===================================================== */
 
-  function trySetVolume() {
-    if (!bgMusic) return;
-    bgMusic.volume = 0; // start silent, fade in once playback begins
-  }
-  trySetVolume();
+const bgMusic = document.getElementById("bgMusic");
+const soundToggle = document.getElementById("soundToggle");
+const soundIcon = document.getElementById("soundIcon");
 
-  function fadeIn() {
-    if (!bgMusic || musicMuted) return;
-    const target = 0.5;
-    const step = () => {
-      if (bgMusic.volume < target - 0.02) {
-        bgMusic.volume = Math.min(target, bgMusic.volume + 0.03);
-        requestAnimationFrame(step);
-      } else {
-        bgMusic.volume = target;
-      }
-    };
-    step();
-  }
+if (bgMusic && soundToggle) {
 
-  function tryStartMusic() {
-    if (!bgMusic || musicStarted) return;
-    const playPromise = bgMusic.play();
-    if (playPromise !== undefined) {
-      playPromise
+  bgMusic.volume = 0.4;
+
+  soundToggle.addEventListener("click", () => {
+
+    if (bgMusic.paused) {
+
+      bgMusic.play()
         .then(() => {
-          musicStarted = true;
-          fadeIn();
+          soundIcon.textContent = "♪";
+          soundToggle.setAttribute("aria-pressed", "true");
         })
-        .catch(() => {
-          // Autoplay was blocked; stay silent until the next user gesture.
+        .catch((error) => {
+          console.error("Không thể phát nhạc:", error);
         });
-    }
-  }
 
-  // Try immediately on load...
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    tryStartMusic();
-  } else {
-    window.addEventListener("DOMContentLoaded", tryStartMusic, { once: true });
-  }
-  // ...and again on the visitor's first interaction, to satisfy browsers
-  // that block audio autoplay until a user gesture occurs.
-  ["pointerdown", "keydown", "touchstart", "scroll"].forEach((evt) => {
-    window.addEventListener(evt, tryStartMusic, { once: true, passive: true });
+    } else {
+
+      bgMusic.pause();
+
+      soundIcon.textContent = "×";
+      soundToggle.setAttribute("aria-pressed", "false");
+
+    }
+
   });
 
-  if (soundToggle && bgMusic) {
-    soundToggle.addEventListener("click", () => {
-      musicMuted = !musicMuted;
-      if (musicMuted) {
-        bgMusic.volume = 0;
-      } else {
-        if (bgMusic.paused) tryStartMusic();
-        fadeIn();
-      }
-      soundToggle.setAttribute("aria-pressed", String(!musicMuted));
-      soundIcon.textContent = musicMuted ? "×" : "♪";
-    });
-  }
-
-  /* =====================================================
+}
   /* =====================================================
      2. SMOOTH ANCHOR SCROLL
   ===================================================== */
