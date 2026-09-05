@@ -25,31 +25,35 @@ const db = getFirestore(app);
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* =====================================================
-     1. BACKGROUND MUSIC — plays the visitor's own MP3 file
-        (assets/background-music.mp3), auto-plays and loops.
-  ===================================================== */
- const bgMusic = document.getElementById("bgMusic");
+   1. BACKGROUND MUSIC
+===================================================== */
+
+const bgMusic = document.getElementById("bgMusic");
 const soundToggle = document.getElementById("soundToggle");
 const soundIcon = document.getElementById("soundIcon");
 
 if (bgMusic && soundToggle) {
   bgMusic.volume = 0.4;
 
-  // Tự động phát khi vừa mở trang
-  window.addEventListener("load", () => {
-    bgMusic.play()
-      .then(() => {
-        soundIcon.textContent = "♪";
-        soundToggle.setAttribute("aria-pressed", "true");
-        console.log("🎵 Nhạc đang phát");
-      })
-      .catch(() => {
-        console.log("⚠️ Trình duyệt chặn autoplay có âm thanh.");
-      });
-  });
+  // Thử autoplay ngay khi script chạy
+  const autoPlayMusic = async () => {
+    try {
+      await bgMusic.play();
+
+      soundIcon.textContent = "♪";
+      soundToggle.setAttribute("aria-pressed", "true");
+
+      console.log("🎵 Autoplay thành công");
+    } catch (error) {
+      console.log("⚠️ Autoplay bị trình duyệt chặn:", error.name);
+    }
+  };
+
+  autoPlayMusic();
 
   // Nút bật / tắt
   soundToggle.addEventListener("click", (e) => {
+    e.preventDefault();
     e.stopPropagation();
 
     if (bgMusic.paused) {
@@ -58,9 +62,12 @@ if (bgMusic && soundToggle) {
           soundIcon.textContent = "♪";
           soundToggle.setAttribute("aria-pressed", "true");
         })
-        .catch(() => {});
+        .catch((error) => {
+          console.error("Không thể phát:", error);
+        });
     } else {
       bgMusic.pause();
+
       soundIcon.textContent = "×";
       soundToggle.setAttribute("aria-pressed", "false");
     }
