@@ -563,10 +563,33 @@ Với tinh thần ham học hỏi và không ngừng khám phá, tôi luôn ch�
 
 </main>
 
-<audio id="bgMusic" autoplay loop preload="auto">
+<!-- ==============================
+     BACKGROUND MUSIC
+============================== -->
+<audio id="bgMusic" loop preload="auto">
   <source src="tvu.mp3" type="audio/mpeg">
 </audio>
 
+<!-- Mũi tên hướng dẫn phát nhạc -->
+<div class="music-hint" id="musicHint">
+  <span class="music-arrow">➜</span>
+  <span>Phát nhạc</span>
+</div>
+
+<!-- Nút bật / tắt nhạc -->
+<button
+  class="soundtoggle"
+  id="soundToggle"
+  aria-pressed="false"
+  aria-label="Tắt/bật nhạc nền"
+>
+  <span class="soundtoggle__icon" id="soundIcon">×</span>
+</button>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
 <button
   class="soundtoggle"
   id="soundToggle"
