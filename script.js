@@ -318,3 +318,15 @@ if (form) {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 })();
+/* =====================================================
+     9.MUSIC FIX
+  ===================================================== */
+soundToggle.addEventListener("click", () => {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    soundIcon.textContent = "♪";
+  } else {
+    bgMusic.pause();
+    soundIcon.textContent = "×";
+  }
+});
