@@ -11,7 +11,7 @@ loops from your own MP3 file. No build step — plain HTML, CSS and JS.
 ├── index.html                       # All markup, sections in the required order
 ├── css/style.css                     # Design tokens, layout, animations
 ├── js/script.js                       # Music playback, scroll reveal, hero canvas, form
-├── assets/background-music.mp3      # ← put your music file here
+├── background-music.mp3      # ← put your music file here
 └── README.md
 ```
 
