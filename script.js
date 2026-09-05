@@ -35,46 +35,68 @@ const soundIcon = document.getElementById("soundIcon");
 if (bgMusic) {
   bgMusic.volume = 0.4;
 
-  // Thử tự động phát khi trang tải
-  window.addEventListener("load", () => {
-    bgMusic.play().then(() => {
-      console.log("🎵 Nhạc nền đang phát");
-    }).catch((error) => {
-      console.log("Autoplay bị trình duyệt chặn:", error);
-    });
+  // Kiểm tra file nhạc
+  bgMusic.addEventListener("error", () => {
+    console.error("❌ Không thể tải assets/tvu.mp3");
   });
 
-  // Nếu autoplay bị chặn → phát ngay khi người dùng tương tác
-  const startMusic = () => {
-    if (bgMusic.paused) {
-      bgMusic.play().then(() => {
-        console.log("🎵 Nhạc nền đã bắt đầu");
-      }).catch(() => {});
-    }
+  bgMusic.addEventListener("canplaythrough", () => {
+    console.log("🎵 tvu.mp3 đã sẵn sàng");
+  });
 
-    document.removeEventListener("click", startMusic);
-    document.removeEventListener("keydown", startMusic);
+  // Thử autoplay
+  const playMusic = () => {
+    bgMusic.play()
+      .then(() => {
+        console.log("🎵 Nhạc nền đang phát");
+        if (soundIcon) soundIcon.textContent = "♪";
+      })
+      .catch((error) => {
+        console.log("⚠️ Autoplay bị trình duyệt chặn:", error.name);
+      });
   };
 
-  document.addEventListener("click", startMusic);
-  document.addEventListener("keydown", startMusic);
-}
+  // Khi trang tải xong
+  window.addEventListener("load", playMusic);
 
-// Nút bật/tắt
-if (soundToggle && bgMusic) {
-  soundToggle.addEventListener("click", (e) => {
-    e.stopPropagation();
-
+  // Nếu trình duyệt chặn autoplay,
+  // click / chạm / nhấn phím đầu tiên sẽ bật nhạc
+  const startAfterInteraction = () => {
     if (bgMusic.paused) {
-      bgMusic.play();
-      soundIcon.textContent = "♪";
-      soundToggle.setAttribute("aria-pressed", "true");
-    } else {
-      bgMusic.pause();
-      soundIcon.textContent = "×";
-      soundToggle.setAttribute("aria-pressed", "false");
+      bgMusic.play()
+        .then(() => {
+          console.log("🎵 Nhạc đã bắt đầu sau tương tác");
+          if (soundIcon) soundIcon.textContent = "♪";
+        })
+        .catch(console.error);
     }
-  });
+
+    document.removeEventListener("pointerdown", startAfterInteraction);
+    document.removeEventListener("keydown", startAfterInteraction);
+  };
+
+  document.addEventListener("pointerdown", startAfterInteraction);
+  document.addEventListener("keydown", startAfterInteraction);
+
+  // Nút bật / tắt
+  if (soundToggle) {
+    soundToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      if (bgMusic.paused) {
+        bgMusic.play()
+          .then(() => {
+            soundIcon.textContent = "♪";
+            soundToggle.setAttribute("aria-pressed", "true");
+          })
+          .catch(console.error);
+      } else {
+        bgMusic.pause();
+        soundIcon.textContent = "×";
+        soundToggle.setAttribute("aria-pressed", "false");
+      }
+    });
+  }
 }
 
   /* =====================================================
