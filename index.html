@@ -565,60 +565,18 @@ Với tinh thần ham học hỏi và không ngừng khám phá, tôi luôn ch�
 
 <!-- BACKGROUND MUSIC -->
 <audio id="bgMusic" loop preload="auto">
-  <source src="tvu.mp3" type="audio/mpeg">
+  <source src="/tvu.mp3" type="audio/mpeg">
 </audio>
 
 <button
   class="soundtoggle"
   id="soundToggle"
   type="button"
-  aria-label="Bật/tắt nhạc"
   aria-pressed="true"
+  aria-label="Tắt/bật nhạc nền"
 >
-  <span id="soundIcon">♪</span>
+  <span class="soundtoggle__icon" id="soundIcon">♪</span>
 </button>
-
-<script>
-  const music = document.getElementById("bgMusic");
-  const soundToggle = document.getElementById("soundToggle");
-  const soundIcon = document.getElementById("soundIcon");
-
-  music.volume = 0.35;
-
-  // Thử phát ngay khi mở trang
-  music.play().catch(() => {
-    // Trình duyệt chặn autoplay thì chờ người dùng tương tác
-  });
-
-  // Phát nhạc ngay khi người dùng tương tác lần đầu
-  function startMusic() {
-    music.play().catch(() => {});
-    document.removeEventListener("click", startMusic);
-    document.removeEventListener("touchstart", startMusic);
-    document.removeEventListener("keydown", startMusic);
-    document.removeEventListener("scroll", startMusic);
-  }
-
-  document.addEventListener("click", startMusic, { once: true });
-  document.addEventListener("touchstart", startMusic, { once: true });
-  document.addEventListener("keydown", startMusic, { once: true });
-  document.addEventListener("scroll", startMusic, { once: true });
-
-  // Nút bật / tắt nhạc
-  soundToggle.addEventListener("click", (event) => {
-    event.stopPropagation();
-
-    if (music.paused) {
-      music.play().catch(() => {});
-      soundIcon.textContent = "♪";
-      soundToggle.setAttribute("aria-pressed", "true");
-    } else {
-      music.pause();
-      soundIcon.textContent = "×";
-      soundToggle.setAttribute("aria-pressed", "false");
-    }
-  });
-</script>
 
 <script type="module" src="script.js"></script>
 </body>
