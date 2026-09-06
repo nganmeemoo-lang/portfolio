@@ -28,39 +28,51 @@ const db = getFirestore(app);
    1. BACKGROUND MUSIC
 ===================================================== */
 
+// ===============================
+// BACKGROUND MUSIC
+// ===============================
 const bgMusic = document.getElementById("bgMusic");
 const soundToggle = document.getElementById("soundToggle");
 const soundIcon = document.getElementById("soundIcon");
 
-if (bgMusic && soundToggle) {
+if (bgMusic) {
+    bgMusic.volume = 0.35;
 
-  bgMusic.volume = 0.4;
+    // Thử autoplay
+    bgMusic.play().catch(() => {
+        console.log("🔇 Autoplay bị trình duyệt chặn — chờ tương tác.");
+    });
 
-  soundToggle.addEventListener("click", async () => {
+    // Tự phát sau tương tác đầu tiên
+    const startMusic = () => {
+        bgMusic.play().catch(() => {});
+    };
 
-    if (bgMusic.paused) {
+    ["click", "touchstart", "keydown", "scroll"].forEach(event => {
+        window.addEventListener(event, startMusic, {
+            once: true,
+            passive: true
+        });
+    });
+}
 
-      try {
-        await bgMusic.play();
+// Nút bật/tắt
+if (soundToggle && bgMusic) {
+    soundToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
 
-        soundIcon.textContent = "♪";
-        soundToggle.setAttribute("aria-pressed", "true");
+        if (bgMusic.paused) {
+            bgMusic.play();
+            soundToggle.setAttribute("aria-pressed", "true");
 
-      } catch (error) {
-        console.error("Không thể phát nhạc:", error);
-      }
+            if (soundIcon) soundIcon.textContent = "♪";
+        } else {
+            bgMusic.pause();
+            soundToggle.setAttribute("aria-pressed", "false");
 
-    } else {
-
-      bgMusic.pause();
-
-      soundIcon.textContent = "×";
-      soundToggle.setAttribute("aria-pressed", "false");
-
-    }
-
-  });
-
+            if (soundIcon) soundIcon.textContent = "×";
+        }
+    });
 }
   /* =====================================================
      2. SMOOTH ANCHOR SCROLL
