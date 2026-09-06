@@ -28,51 +28,81 @@ const db = getFirestore(app);
    1. BACKGROUND MUSIC
 ===================================================== */
 
-// ===============================
-// BACKGROUND MUSIC
-// ===============================
+/* =====================================================
+   1. BACKGROUND MUSIC
+===================================================== */
+
 const bgMusic = document.getElementById("bgMusic");
 const soundToggle = document.getElementById("soundToggle");
 const soundIcon = document.getElementById("soundIcon");
 
 if (bgMusic) {
-    bgMusic.volume = 0.35;
+  bgMusic.volume = 0.35;
+  bgMusic.muted = false;
 
-    // Thử autoplay
-    bgMusic.play().catch(() => {
-        console.log("🔇 Autoplay bị trình duyệt chặn — chờ tương tác.");
-    });
+  // Hàm phát nhạc
+  const playMusic = () => {
+    bgMusic.play()
+      .then(() => {
+        console.log("🎵 Nhạc đang phát");
+        if (soundIcon) soundIcon.textContent = "♪";
+        if (soundToggle) {
+          soundToggle.setAttribute("aria-pressed", "true");
+        }
+      })
+      .catch((error) => {
+        console.log("Autoplay đang chờ tương tác:", error.name);
+      });
+  };
 
-    // Tự phát sau tương tác đầu tiên
-    const startMusic = () => {
-        bgMusic.play().catch(() => {});
-    };
+  // Thử autoplay
+  playMusic();
 
-    ["click", "touchstart", "keydown", "scroll"].forEach(event => {
-        window.addEventListener(event, startMusic, {
-            once: true,
-            passive: true
-        });
-    });
+  // Nếu trình duyệt chặn autoplay thì phát khi tương tác đầu tiên
+  const unlockMusic = () => {
+    playMusic();
+
+    document.removeEventListener("pointerdown", unlockMusic);
+    document.removeEventListener("keydown", unlockMusic);
+    document.removeEventListener("touchstart", unlockMusic);
+    document.removeEventListener("wheel", unlockMusic);
+  };
+
+  document.addEventListener("pointerdown", unlockMusic, { once: true });
+  document.addEventListener("keydown", unlockMusic, { once: true });
+  document.addEventListener("touchstart", unlockMusic, { once: true });
+  document.addEventListener("wheel", unlockMusic, {
+    once: true,
+    passive: true
+  });
 }
 
-// Nút bật/tắt
+
+// Nút bật / tắt nhạc
 if (soundToggle && bgMusic) {
-    soundToggle.addEventListener("click", (e) => {
-        e.stopPropagation();
+  soundToggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-        if (bgMusic.paused) {
-            bgMusic.play();
-            soundToggle.setAttribute("aria-pressed", "true");
+    if (bgMusic.paused) {
+      bgMusic.muted = false;
 
-            if (soundIcon) soundIcon.textContent = "♪";
-        } else {
-            bgMusic.pause();
-            soundToggle.setAttribute("aria-pressed", "false");
+      bgMusic.play()
+        .then(() => {
+          if (soundIcon) soundIcon.textContent = "♪";
+          soundToggle.setAttribute("aria-pressed", "true");
+        })
+        .catch((error) => {
+          console.error("Không thể phát nhạc:", error);
+        });
 
-            if (soundIcon) soundIcon.textContent = "×";
-        }
-    });
+    } else {
+      bgMusic.pause();
+
+      if (soundIcon) soundIcon.textContent = "🔇";
+      soundToggle.setAttribute("aria-pressed", "false");
+    }
+  });
 }
   /* =====================================================
      2. SMOOTH ANCHOR SCROLL
